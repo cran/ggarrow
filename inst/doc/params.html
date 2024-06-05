@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Arrow parameters</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Arrow parameters</h1>
+
+
+
+<p>This vignette walks through the various options present in
+<code>geom_arrow()</code> and friends. First, let’s setup a very basic
+plot in which we can show what the parameters are doing.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(ggarrow)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">y =</span> <span class="dv">0</span>), <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">c</span>(<span class="st">&quot;start</span><span class="sc">\n</span><span class="st">&#39;fins&#39;&quot;</span>, <span class="st">&quot;end</span><span class="sc">\n</span><span class="st">&#39;head&#39;&quot;</span>)),</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>    <span class="at">colour =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>  )</span></code></pre></div>
+<div id="aesthetics" class="section level2">
+<h2>Aesthetics</h2>
+<p>There are 3 aesthetics that depart from the typical
+<code>geom_path()</code> behaviour. The first one is the
+<code>linewidth</code> aesthetic, in that it can vary within a path.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_arrow</span>(<span class="at">linewidth =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">3</span>))</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>This all means that you could in theory display a kernel density
+estimate using an arrow, by remapping a computed density aesthetic to
+the linewidth.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">ggplot</span>(faithful, <span class="fu">aes</span>(waiting)) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  <span class="fu">geom_arrow</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">&quot;density&quot;</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(<span class="dv">0</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>        <span class="at">linewidth =</span> <span class="fu">after_scale</span>(ndensity <span class="sc">*</span> <span class="dv">20</span>))</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>The other two are the <code>stroke_colour</code> and
+<code>stroke_width</code> aesthetics. These can be used to outline the
+arrow.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_arrow</span>(<span class="at">stroke_colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">stroke_width =</span> <span class="dv">1</span>,</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>               <span class="at">colour =</span> <span class="st">&quot;white&quot;</span>, <span class="at">linewidth =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="heads-fins-and-middle-arrows" class="section level2">
+<h2>Heads, fins and middle arrows</h2>
+<p>This dealt with more thoroughly in another vignette. To briefly
+recap, an arrow comes in three parts: a head, a shaft and fins. All
+these parts are valid places to place ornaments.</p>
+<div id="using-arrow-parts" class="section level3">
+<h3>Using arrow parts</h3>
+<p>The three different parts of an arrow can be populated with the
+<code>arrow_head</code>, <code>arrow_fins</code> and
+<code>arrow_mid</code> arguments. Whereas <code>arrow_head</code> and
+<code>arrow_fins</code> are pointed towards their respective path ends,
+the <code>arrow_mid</code> follows the forward orientation.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_arrow</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="at">arrow_head =</span> <span class="fu">arrow_head_wings</span>(),</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="at">arrow_mid  =</span> <span class="fu">arrow_head_wings</span>(),</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="at">arrow_fins =</span> <span class="fu">arrow_head_wings</span>()</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="setting-sizes" class="section level3">
+<h3>Setting sizes</h3>
+<p>The arrow sizes can be controlled by the <code>length_head</code>,
+<code>length_fins</code> and <code>length_mid</code> arguments. You can
+use a plain <code>&lt;numeric&gt;</code> to have the arrow size be
+relative to the <code>linewidth</code> aesthetic. Alternatively, you set
+the length in an absolute manner by providing a
+<code>&lt;grid::unit&gt;</code> object.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_arrow</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="at">arrow_head =</span> <span class="fu">arrow_head_wings</span>(),</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="at">arrow_mid  =</span> <span class="fu">arrow_head_wings</span>(),</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="at">arrow_fins =</span> <span class="fu">arrow_head_wings</span>(),</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>  <span class="at">length_head =</span> <span class="dv">10</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>  <span class="at">length_fins =</span> <span class="dv">4</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>  <span class="at">length_mid  =</span> <span class="fu">unit</span>(<span class="dv">10</span>, <span class="st">&quot;mm&quot;</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="middle-arrows" class="section level3">
+<h3>Middle arrows</h3>
+<p>Middle arrows needn’t be on the middle. You can control where they
+are placed using the <code>mid_place</code> argument. It accepts input
+between [0-1], and represents the distance along the path where the
+arrows are drawn.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_arrow</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="at">arrow_head =</span> <span class="cn">NULL</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="at">arrow_mid  =</span> <span class="fu">arrow_head_wings</span>(),</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  <span class="at">mid_place  =</span> <span class="fu">c</span>(<span class="fl">0.33</span>, <span class="fl">0.66</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>You can swap the direction of middle arrows by providing negative
+numbers to the <code>mid_place</code> argument.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_arrow</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  <span class="at">arrow_head =</span> <span class="cn">NULL</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  <span class="at">arrow_mid  =</span> <span class="fu">arrow_head_wings</span>(),</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>  <span class="at">mid_place  =</span> <span class="fu">c</span>(<span class="fl">0.16</span>, <span class="sc">-</span><span class="fl">0.33</span>, <span class="fl">0.66</span>, <span class="sc">-</span><span class="fl">0.82</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>One alternative to manually specifying positions, is to provide a
+distance between subsequent arrows. You can do this by giving a
+<code>&lt;grid::unit&gt;</code> instead of a
+<code>&lt;numeric&gt;</code>. Again, to change the direction of the
+middle arrows, you can set this to a negative unit.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_arrow</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  <span class="at">arrow_head =</span> <span class="cn">NULL</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="at">arrow_mid  =</span> <span class="fu">arrow_head_wings</span>(),</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>  <span class="at">mid_place  =</span> <span class="fu">unit</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="st">&quot;cm&quot;</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+</div>
+<div id="resection" class="section level2">
+<h2>Resection</h2>
+<p>Sometimes, you wouldn’t want your arrows to exactly touch the object
+that they’re pointing to. To prevent this, you can ‘resect’ the arrow to
+make it a bit shorter near the ends. You can provide the
+<code>resect</code> argument in millimetres to cut the path at both the
+heads and the fins of the arrow.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_arrow</span>(<span class="at">resect =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>You can also control independently for the head and fins of the arrow
+how much resection is to be done with the <code>resect_head</code> and
+<code>resect_fins</code> arguments.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_arrow</span>(<span class="at">resect_head =</span> <span class="dv">10</span>, <span class="at">resect_fins =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>A geom that does this automatically is
+<code>geom_arrow_chain()</code>. Normally, it has a default
+<code>resect</code> value of 1 millimeter, but if you turn this off and
+set the <code>size</code> appropriate for the start and end points we’ve
+drawn, you can see that it doesn’t overlap the points, but barely
+touches them.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_arrow_chain</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">resect =</span> <span class="dv">0</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="other-parameters" class="section level2">
+<h2>Other parameters</h2>
+<p>Sometimes, you’ve already dodged the object to be pointed at a bit.
+Now you may find yourself with an arrow that is too short. You can then
+use <code>justify = 1</code> to have the arrow start where the path
+ends.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_arrow</span>(<span class="at">justify =</span> <span class="dv">1</span>, <span class="at">linewidth =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>Other times, you might find that you have resected your arrow too
+much. If there is no more space left for placing the arrow, they are
+omitted by default. To change this, and show arrows despite how short
+they may be, you can use the <code>force_arrow</code> argument. There is
+no guarantee that it will be placed in a nice position though.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_arrow</span>(<span class="at">resect =</span> <span class="dv">100</span>, <span class="at">force_arrow =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

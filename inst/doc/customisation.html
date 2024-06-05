@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Customising arrows</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Customising arrows</h1>
+
+
+
+<p>There are a few ways in which one can tweak the display of arrow
+ornaments in ggarrow. This vignette goes through a few methods for
+making new arrow ornaments, from basic xy-coordinates to function
+factories and using the ornaments in scales.</p>
+<div id="new-ornaments" class="section level3">
+<h3>New ornaments</h3>
+<p>In principle, extending ornaments is as straightforward as being able
+to construct a polygon in an xy-coordinate matrix with <code>x</code> as
+the first column and <code>y</code> as the second column.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>my_ornament <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">5</span>) {</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">2</span> <span class="sc">*</span> pi, <span class="at">length.out =</span> n <span class="sc">*</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">1</span>)[<span class="sc">-</span>(n <span class="sc">*</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">1</span>)]</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  l <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">0.4</span>), <span class="at">length.out =</span> <span class="fu">length</span>(t))</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>  <span class="fu">cbind</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">cos</span>(t) <span class="sc">*</span> l,</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">sin</span>(t) <span class="sc">*</span> l</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>  )</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>}</span></code></pre></div>
+<p>We can inspect the coordinates of our new ornament. It is ggarrow’s
+convention that the line joins the ornament at the (0,0) coordinate.
+Also, the tip of the ornament is expected to be at the (1,0)
+coordinate.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>orn <span class="ot">&lt;-</span> <span class="fu">my_ornament</span>(<span class="dv">5</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">plot_ornament</span>(orn)</span></code></pre></div>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASAAAAEgCAMAAAAjXV6yAAABGlBMVEUAAAAAACsAADoAAFwAAGYAOpAAPKQAZrYOAAAObOYUIgAYPAAYl+YigZYijKsil78il8Uil+Yil+oil+4iqfI6AAA6ADo6AGY6kNtOl+ZOzftmAABmADpmZmZmtv91l+Z1zfJ13fd13f+IdoGIjOaQOgCQ2/+aze6a3fKa7v+fIQCfU2umU2umgeampYax7v+2ZgC2/7a2//+9mpa9u7+9u+a9///DU2vDdtbbkDrb/9vb///ezere//fe///fU2vfU4HfU4bfU5jfU5/fkdDfruffydDkU2vkrufqU2vqydDqyf/vc2vvrp/v5P/0kWv0///6rob/tmb/yZ//25D/3e7/5Ln/7vL//7b//9D//9v//+f///f///8OWl/yAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAISUlEQVR4nO2dC3vURBSGRwEVwUsKKm2VarUoCoqXqqvVWEFpKbZ0l5a2kP//N5wku+lmN8l3JplMZpvvfXi22WRmzuRlMpP7qohUorqugO9QEICCABQEoCAABQEoCEBBAAoCUBCAggAUBKAgAAUBKAhAQQAKAlAQgIIAFASgIAAFASgIQEEACgJQEICCABQEoCAABQEoCEBBAAoCUBCAggAUBKAgAAUBKAhAQQAKAlAQgIIAFASgIAAFASgIQEEACgJQEICCABQEoCAABQEoCEBBAAoCUBCAggAUBKAgAAUBKAhAQQAKAlAQgIIAFASgIAAFASgIYFHQ2YZKuPyDvTK7x56ggbqVTgwnExcCa4LONjItgyu/2yq1e6wJOlm9PZkcXqSNjC0IYLMPGjch9kElnKymo1hp+1GOsbJWLveDHO9zUZCTcG1UelAyilFQcQTLnYI8sEel+BfLWjgKclKK21jCcnorSNqXeSZospsY0+oopha1BZ1toGPUngvSht50EEstcB80VLcrl9uIpeTl+CfIQSxlUE4fBSmTciio9XD2SnEUSxmV0z9BauZvy+FsluIklpqbaDWc1VJcxFIFUy2Gs1uKi1gUJM5MQSAvBYGsFASyUhDI2RNBBhc5VOVXYa6adNiCxFeCZhP1RlDygR3NJeiLoOzYE0i66IIqrqyq6USl+QVzhBnr0Okolh+8iyUVzOuPoPmNbs6R0JksXB06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" /><!-- --></p>
+<p>You can now use your ornament as the <code>arrow_head</code>,
+<code>arrow_fins</code> and <code>arrow_mid</code> arguments. It just
+listens to the usual arguments like <code>length_{head/fins/mid}</code>,
+<code>resect_{head/fins}</code> and <code>mid_place</code> and scales
+with the line width (if the length is not an absolute unit).</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">library</span>(ggarrow)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co">#&gt; Loading required package: ggplot2</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)), <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  <span class="fu">geom_arrow</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)), <span class="at">arrow_head =</span> orn, <span class="at">resect =</span> <span class="fu">unit</span>(<span class="dv">2</span>, <span class="st">&quot;cm&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  <span class="fu">geom_arrow</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)), <span class="at">arrow_fins =</span> orn, <span class="at">length_fins =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">&quot;cm&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>  <span class="fu">geom_arrow</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>)), <span class="at">arrow_mid  =</span> orn, <span class="at">mid_place =</span> <span class="fu">c</span>(<span class="fl">0.33</span>, <span class="fl">0.66</span>), </span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>             <span class="at">linewidth =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="ornament-factories" class="section level3">
+<h3>Ornament factories</h3>
+<p>Sometimes, you might want to know more about the context in which
+you’re drawing the ornament than can’t be known before plotting. For
+example, let’s say we wanted to add half the star we made above an
+arrowhead. When doing this it is immediately clear that the connection
+with the line looks awful.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>half_star <span class="ot">&lt;-</span> orn[orn[, <span class="st">&quot;y&quot;</span>] <span class="sc">&gt;=</span> <span class="dv">0</span>, ]</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)), <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  <span class="fu">geom_arrow</span>(<span class="at">arrow_head =</span> half_star, <span class="at">linewidth =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>If we know the linewidth in advance, you might nudge it manually.
+Because the default <code>length_head</code> is 4 and the we set the
+linewidth is 3, the arrowhead will get a size of 3 * 4 = 12 mm.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>magic_number <span class="ot">&lt;-</span> <span class="fl">0.7528125</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>half_star[, <span class="st">&quot;y&quot;</span>] <span class="ot">&lt;-</span> half_star[, <span class="st">&quot;y&quot;</span>] <span class="sc">-</span> (<span class="fl">1.5</span><span class="sc">/</span><span class="dv">12</span>) <span class="sc">*</span> magic_number</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)), <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  <span class="fu">geom_arrow</span>(<span class="at">arrow_head =</span> half_star, <span class="at">linewidth =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>The way to solve this, is to use a function factory. This method is
+much more involved, so be forewarned. First, if we just write a function
+that does as we did before, you might notice a <em>tiny</em> star at the
+end of the line as a few pixels.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>half_star <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">5</span>) {</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  ornament <span class="ot">&lt;-</span> <span class="fu">my_ornament</span>(n)</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="cf">function</span>(...) {</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>    half <span class="ot">&lt;-</span> ornament[ornament[, <span class="st">&quot;y&quot;</span>] <span class="sc">&gt;=</span> <span class="dv">0</span>, ]</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>    half</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>  }</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>}</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)), <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>  <span class="fu">geom_arrow</span>(<span class="at">arrow_head =</span> <span class="fu">half_star</span>(<span class="dv">5</span>), <span class="at">linewidth =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>That is because the output of the function factory gets interpreted
+as millimetres. To be responsive to what <code>length_head</code> is
+being passed around, you should multiply your output with the length.
+<code>length</code> is one of the parameters that the function produced
+by the factory can receive. Doing this gives more reasonable output, but
+we can now see that the half-star extends beyond the path’s end.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>half_star <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">5</span>) {</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  ornament <span class="ot">&lt;-</span> <span class="fu">my_ornament</span>(n)</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="cf">function</span>(length, ...) {</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>    half <span class="ot">&lt;-</span> ornament[ornament[, <span class="st">&quot;y&quot;</span>] <span class="sc">&gt;=</span> <span class="dv">0</span>, ]</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>    half <span class="sc">*</span> length</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>  }</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>}</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)), <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>  <span class="fu">geom_arrow</span>(<span class="at">arrow_head =</span> <span class="fu">half_star</span>(<span class="dv">5</span>), <span class="at">linewidth =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>To control how much the line should be cut back, you can set the
+‘resect’ attribute on your output. For this shape, we should probably
+resect the line by exactly the length parameter we get. Now the
+alignment looks as it should.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>half_star <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">5</span>) {</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  ornament <span class="ot">&lt;-</span> <span class="fu">my_ornament</span>(n)</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  <span class="cf">function</span>(length, ...) {</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>    half <span class="ot">&lt;-</span> ornament[ornament[, <span class="st">&quot;y&quot;</span>] <span class="sc">&gt;=</span> <span class="dv">0</span>, ]</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>    half <span class="ot">&lt;-</span> half <span class="sc">*</span> length</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>    <span class="fu">attr</span>(half, <span class="st">&quot;resect&quot;</span>) <span class="ot">&lt;-</span> length</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>    half</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>  }</span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>}</span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)), <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>  <span class="fu">geom_arrow</span>(<span class="at">arrow_head =</span> <span class="fu">half_star</span>(<span class="dv">5</span>), <span class="at">linewidth =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>Lastly, to fix the actual problem we were trying to solve, we can
+nudge the y-coordinates by half the linewidth. <code>width</code> is a
+parameter the produced function can receive that represents the line
+width. Now, it looks like it should.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>half_star <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">5</span>) {</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  ornament <span class="ot">&lt;-</span> <span class="fu">my_ornament</span>(n)</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="cf">function</span>(length, width, ...) {</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>    half <span class="ot">&lt;-</span> ornament[ornament[, <span class="st">&quot;y&quot;</span>] <span class="sc">&gt;=</span> <span class="dv">0</span>, ]</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>    half <span class="ot">&lt;-</span> half <span class="sc">*</span> length</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>    half[, <span class="st">&quot;y&quot;</span>] <span class="ot">&lt;-</span> half[, <span class="st">&quot;y&quot;</span>] <span class="sc">-</span> <span class="fl">0.5</span> <span class="sc">*</span> width</span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>    <span class="fu">attr</span>(half, <span class="st">&quot;resect&quot;</span>) <span class="ot">&lt;-</span> length</span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>    half</span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>  }</span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>}</span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">width =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(x, width, <span class="at">linewidth =</span> <span class="fu">I</span>(width), <span class="at">group =</span> width)) <span class="sc">+</span></span>
+<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a>  <span class="fu">geom_arrow</span>(<span class="at">arrow_head =</span> <span class="fu">half_star</span>(<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">5</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>Besides <code>width</code> and <code>length</code>, the inner
+function can also receive <code>resect</code>. Because functionality
+might be expanded in the future, the last argument to the inner function
+should be <code>...</code>.</p>
+</div>
+<div id="scales" class="section level3">
+<h3>Scales</h3>
+<p>The discrete scales in ggarrow can take a mixed list of things that
+may define an arrow. That way, you can just put your own ornaments in a
+list to have it become part of the scale.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">whirlpool</span>(<span class="dv">5</span>), <span class="fu">aes</span>(x, y, <span class="at">group =</span> group)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  <span class="fu">coord_equal</span>()</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_arrow</span>(<span class="fu">aes</span>(<span class="at">arrow_head =</span> group), <span class="at">resect =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>  <span class="fu">scale_arrow_head_discrete</span>(</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">list</span>(<span class="st">&quot;head_wings&quot;</span>, orn, <span class="st">&quot;fins_feather&quot;</span>, orn, <span class="st">&quot;cup&quot;</span>),</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASAAAAEgCAMAAAAjXV6yAAAAulBMVEUAAAAAADoAAGYAOpAAZrYzMzM6AAA6ADo6AGY6OmY6OpA6kNtNTU1NTW5NTY5NbqtNjshmAABmADpmOgBmtrZmtv9uTW5uTY5ubqtuq+SOTU2OTW6OTY6OyP+QOgCQOjqQOmaQkDqQkGaQtpCQ29uQ2/+rbk2rbm6rbo6ryKur5P+2ZgC2/7a2///Ijk3I///bkDrb///kq27k///r6+v/tmb/yI7/25D/5Kv//7b//8j//9v//+T/////NUlyAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAMaElEQVR4nO3dCX/UNhoGcCVlgV1C27TLXi3pbtv0IBs6tB6GMPj7f62Obx3vq0eSZdkD7/MDwozv/0iyxldULfFGrb0CW48AgQgQiACBCBCIAIEIEIgAgQgQiACBCBCIAIEIEIgAgQgQiACBCBCIAIEIEIgAgQgQiACBCBCIAIEIEIgAgQgQiACBCBCIAIEIEIgAgQgQiACBCBCIAIEIEIgAgQgQiACBCBCIAIEIEIgAgQgQSBpQdUr7zxT/y9JjC5AACZAACZAACZD0g2CkBAmQAAmQAAmQAAmQAG0LSPURIG5sZSUL0MO1uvjh6f3h6f/U5f3xRqlHdX14ctv+c3jyvVKfvTkboIrjmQH0cP3s9Pfy/vD4BHO8edT+HYEeN2aPooHe/fO39uf7/1x98UdJIE0oVxXbX97X9a4BetG/OP0zAb3oi1MU0Nurz1ugDz+9rH//sihQNZaeXEC7pgYdnnYm+/ZFU7Vup58P1y/igF4//7UrQe+//W0sTMX2YoPQhoHGKvbuX3/U7795dfrfX05BE+XKUMUyxahV+4tbooo9vbdXAc20B3r7xQDUpFAJastQZbfRGRrpxmRopJs3jzcXcxvpqQQVBRqEVNjYAKjdzX/fA9X9br4+PFbq7191u3nHJxholTaoE6ry9YOa7N2+Tht3BxYF9OGnfxffi/VCp5eZgJpmh6hF84Gav/P7QXbfWNtouMlxY7MlaKeoWjQPiEwskGtjKgUBKWbouX8XI0ScNwI2+WMFYr5P1dZQvMma0EcDpG8+LGAhQOqjAjJLR0gT5QequHmFA1V0VgEC+ymG85MBcqtNYIX0jx26z9s8UGCrYr0MqJBke3Z+QKH7Jfcl0y9aDqibX1mgjifxqwbdLzL2eRmBhj1sfiDP/NrMnIF36Ix5uzxdefWuT/KS/M1IYgnq5+GtvllKkN4HWRxoLPda45MO5Bz+sf0yAFl9tAJA7Yfu2VFHf7X1ANnlKxpIKQ7IPeKap4p1y/J19aKA/EfIZgIpZftMI+/V5TJA+MtCHJAtZC9qDhCxvsPgu+as60JAKYdFfWMvDMSUoMWqGCE0E8hzCNHfhgcBmT6FgOoqK1DFAsHTQEGNtHF8qRCQZ5vSgJgWfy5QP2dt9gWB8uzFxk4VPdjXC8BAw3xXAAo6bmztYj1jLwM0Llor7TOAppM9v19d9Rd68ED+TVZuvEATBLE/SAWapqWAiPiBtIteXr80l5TSsyHjBaIPD6UDubvAeUDTCecPP7/S3o8FcspMXRmVjamQ2YFInzlA0yULp7p2dfWyeS/+8pcBgh3imzLibRi9Zc4DNF308u4fr7RSBIuM/VWW3zN3QvYqTwOpeVvzS/iqkQvIvOhlaocigOhKpL+MB6o2A2Re9JIAxDXDAf2gYXpq7M0ATRe9NJXtwy+xu/mpLmwKyK7v6UB9P6gpRKd+0POxrgVuMt8ZXhnI6mjOAGIStMm+rmAEENWAzQZS4//WAzJ3NYlA5HmeHEBK+7kOEN4Vrwuk9+NXAHK6PnmBqnMHcruGGwWq1gNiNzkOqOKA/O1bElBzwbR9J8JiV3d4Nnl1IPurcz/04avbhLt9UoBU+sULBYCUHh1o31wgfBd9M0s8kMoMRN3tkwykrFTmyE0pygHkjcp3e047t/B3UZiDmtMIx5tnzpJSFuQtQeS3g/xVzD8zfrWdUqSN3Nz4sziQygu0QEfRKUPD4PaOsRJA/k1eG8jahU0jkz7ZgcY9w1aBOhqzke+ya9mW3ottHagvOhQQncxAU+crExD9MhloqFrm9OWAphV3Njnmq9liQGPTkwb0cH1B3lOWA8jcpJlAakYJ6lfHmCAU6NTRpp5eEQ6krbc1VOUGAmPzq00kAqi9L1i5vaVgIGalbZ8zBuqI3GsZQ4AUB+T4nDHQrr3r9Q5UNHq1fEBZ92JMcdR2oIFAsQfMmlvt247SfihC0+Uv+K5nxQGpzEBcfY0Gij2i2Dy1wRw6Xf4S8PQX7hAEdfhjCSAVC6RigdxMp54DnrzgAcrbUWQatFgg58tqAtB08ULA01+YYzQq7/Eh3zUxaDm0T57LX/DTX7jOG3n4Y0YJ4naJ4/uBJYg6YBYNRJUgBojr3dLHh+YBURuq0oCqeUARbRDXN6GPD2UEsk8DBgLpE/TZUx3A0Mtf4NNfGCCVG8jtMhBHmkNvqKt0oOYa4F3sA5amy19QP4gHChAJByK6DFXt+ATd7TNNPyXhEV3sklYBovpUlXW2IqCKmQ2mNkZ0CYoBIrepOFBIG2TvUIYcHrvHexYGmup5NiBqbKOVhkB2R0EbI9eJQ3cj7H3LMkBkl8EoQQFAto8x8mKnnosA0XtEo5HGQI7PeG7+szdnXoKY9iwOyPUZR94ptVwbRAOpnECKAxpoQoAInzJnNVigIJEAIMViV+PDOjEQ5fNxAGk+dCPdL88PRPqUebhJ3ttyqBkF3RTkX5x7KGkpIPdzZA9BBBUZUIKUMj56qg2yJuZXm0gJIHfXab09B0gRAtZge+JPCcjmESD9tVKuD1G+nMF+ILqjuCjQEm3Q1Pnzjp0CxH/VOBsgp2/MjU0XMASkxv+VA8rbDzLqlmdspoBBIKX9XBGoYoDAqfrK/6QU7SVXAzGQ9gmsC0QVAtDshpe3bhPPB8j90JcFUrOBqqJARK1gmhHQs4kBogcnAh1vYu/2CX64id1fqcf3lwMaNzASyPLRRt7F3g4V/nATHojcCKLzGwuklYAoIKXHBDr89etIoIiHm8QBxf8iCBKIHcwCKSs60PG7H2OrWMTDTdrFkW+Tc+beD07KDIhzsHo/aPcsug0KebiJU2LNT3X4lOxP2Rg9ugQZS0tvg/q9YJfD395EAb2+uvoy6OEmaUCVZxMhkPLxIiCnDPVDu3s17Et8czzchCq3GEgXigOyPovURnqaYEx0FQt8uAlVr/WBzCZPaxkFZPFEAnVTm6U9HSj04SY2TxjQVBQigOziEwnUT80AEcn7sFuq0lhVzhjsljcAZDd1sUDD1GYVLQhErXTXENLbZLdYAKhbSMDYzGqPq1gayClAoUDhmzwtJYSTW+1hBc1+/MpA3EEtc1q0yeQOIBqIzPJAXSFggSq3jFD107PJXPt2PkD+rh8Acvsm4aXzLIDGPTW7EXjPrEA8E28faFpL9lMOaGSoHjnFkxWo3EH7YRt5IF8hsHZqto2/fs4A6hZQEojdiECgoMHZgIa9Yn6ghKjM9/ykhPbZRgny/SKIlUrQuEbbAPIeIVsDaFqfjQB5egFrAOm9rj7NETPndp+SQMGn6gsAGR3PPs5F5GsA8WdqwmeWAcis712O31EP5igKxB4hKw1k7TG6NE9UKPQcRX4jtgFkdVv7oc0zFN1SVBjIc71B+MzmAjndei0lnqPo34hOaE0g58vdtoBCDrsvCkQsvUtzt8/xv6vu5vu4QgWBXJ+Zd/sM5w3xw00iNsImKgdE+MzrSb/tLwoKeLhJ1EaYRMWAKJ9ZQK+f/9qVoICHm0RuhE5UCoj0mfldrFcJeLhJdLojYnnmFRT38tp8QPjhJtGfsnY6o/hXDXOCNKDm8peaKEEZgahLLfrBxtvbBOrzbqk2qA95aH4ASp432qrwhALBh5vM6Ru7h+pNsc0DhTzcZOaXBy/RpoHI5AfqwggJkDO2KSRAhXbzAiRAAiRAnwYQEfAF1j941sRo8LwIEIgAgQgQyPoX7Ww8AgQiQCACBCJAIFmAyJOLQ5hb761h0ZPiBedJDiD65GIf7tZ7c1j0pHjBmZIBiDm52Ie79d4cFj0pXnCm5Kxi1j3S/TDi1nt3WPSkeMGZkhPIPLnYh7v13hwWPSlecKbMA/KdXKz9t96bE4AS5E7aj3FeJQg0JG2MrQxug9xJ8YIzJSeQeXKxD3frvTkselK84EzJBuScXBzC3HpvDYueFC84T6QnDSJAIAIEIkAgAgQiQCACBCJAIAIEsj7Q7uK2frjGvz55pawPVN89av5sNRsAOjz5wfm9cNvJBoCoR8xuJ1sAulPbrWFbANpf/v96u0VofaCHk84e/YL79bI+UPO77Y83m61k6wNtPAIEIkAgAgQiQCACBCJAIAIEIkAgAgQiQCACBCJAIAIEIkAgAgQiQCACBCJAIAIEIkAgAgQiQCACBCJAIAIEIkAgAgQiQCACBCJAIAIEIkAgAgQiQCACBCJAIAIEIkAgAgQiQCACBCJAIAIEIkAgAgQiQCACBCJAIH8CIcwUkGfVB0sAAAAASUVORK5CYII=" /><!-- --></p>
+<p>If you start your function name with the <code>arrow_</code>-prefix,
+the ornament can be automatically found if available in the global
+environment.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>arrow_star <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">5</span>) {</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>  <span class="fu">my_ornament</span>(<span class="fu">round</span>(n))</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>}</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_arrow</span>(<span class="fu">aes</span>(<span class="at">arrow_head =</span> group), <span class="at">resect =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>  <span class="fu">scale_arrow_head_discrete</span>(</span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;head_wings&quot;</span>, <span class="st">&quot;star&quot;</span>, <span class="st">&quot;fins_feather&quot;</span>, <span class="st">&quot;star&quot;</span>, <span class="st">&quot;cup&quot;</span>),</span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>While not always very easy to figure out, as different arrowheads are
+discrete, one <em>can</em> in theory also apply a continuous scale to
+arrows. Please note that I sneaked in a <code>round()</code> in the
+function above, this is so that we can demonstrate a continuous scale
+with the star.</p>
+<p>If we have something about our arrowhead that may vary in number,
+like an angle, or some size or in this example, the number of points on
+a star (though not <em>truly</em> continuous), we can use
+<code>scale_arrow_head_continuous()</code> to map our variable to the
+arrowhead. We should give the function we created as the
+<code>generator</code> argument. The variable part of our function
+argument should be provided as <code>map_arg</code>, and the range of
+values it can take on should be provided as <code>range</code>.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_arrow</span>(<span class="fu">aes</span>(<span class="at">arrow_head =</span> <span class="fu">as.integer</span>(group)), <span class="at">resect =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>  <span class="fu">scale_arrow_head_continuous</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>    <span class="at">generator =</span> arrow_star, <span class="at">map_arg =</span> <span class="st">&quot;n&quot;</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>    <span class="at">range =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">7</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
